@@ -37,8 +37,10 @@ cd backend
 fly apps create seedjournal-api-staging
 fly secrets set -a seedjournal-api-staging DATABASE_URL="postgresql+asyncpg://..." JWT_SECRET="<64-char-random>" APPLE_CLIENT_ID="com.seedjournal.app" APP_ENV="production" LLM_PROVIDER="stub" CORS_ORIGINS="https://minaelzek.github.io"
 # Add OPENAI_API_KEY if LLM_PROVIDER=openai
-fly deploy -c fly.staging.toml
+fly deploy --depot=false -c fly.staging.toml
 ```
+
+If stuck on **Waiting for depot builder**, see [`FLY_DEPLOY_TROUBLESHOOTING.md`](FLY_DEPLOY_TROUBLESHOOTING.md).
 
 - [ ] `fly status -a seedjournal-api-staging` shows running machine
 - [ ] Smoke:

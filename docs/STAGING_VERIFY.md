@@ -63,8 +63,10 @@ fly secrets set -a seedjournal-api-staging \
 
 ```bash
 cd backend
-fly deploy -c fly.staging.toml
+fly deploy --depot=false -c fly.staging.toml
 ```
+
+Stuck on `Waiting for depot builder...`? Use `--depot=false` (above) or see [`FLY_DEPLOY_TROUBLESHOOTING.md`](FLY_DEPLOY_TROUBLESHOOTING.md).
 
 Wait until `Visit your newly deployed app at https://seedjournal-api-staging.fly.dev`.
 
