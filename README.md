@@ -5,6 +5,8 @@
 
 CI failed? See [`docs/TROUBLESHOOTING_CI.md`](docs/TROUBLESHOOTING_CI.md).
 
+**MVP status:** [`docs/COMPLETION_STATUS.md`](docs/COMPLETION_STATUS.md) — code complete; App Store requires your Fly/Apple/QA steps.
+
 A premium AI-guided reflection journal for young adults. Thoughts become memories; memories become insights; growth is shown through a living sakura tree—not gamification.
 
 **Public repo** — [`SECURITY.md`](SECURITY.md) · [Privacy policy (GitHub Pages)](https://minaelzek.github.io/SeedJournalV1/privacy/) *(enable Pages: [`docs/ENABLE_GITHUB_PAGES.md`](docs/ENABLE_GITHUB_PAGES.md))*

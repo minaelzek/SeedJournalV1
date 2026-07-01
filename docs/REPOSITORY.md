@@ -41,6 +41,7 @@ SeedJournalV1/
 | [002](adr/002-tree-centric-navigation.md) | Tree-centric navigation (no tab bar) |
 | [003](adr/003-sign-in-with-apple.md) | Sign in with Apple v1 |
 | [004](adr/004-inline-pipeline-in-tests.md) | Inline intelligence pipeline under pytest |
+| [005](adr/005-optional-hnsw-index.md) | HNSW index outside Alembic CI |
 
 ---
 
@@ -62,7 +63,8 @@ SeedJournalV1/
 | New contributor | [CONTRIBUTING.md](../CONTRIBUTING.md), [PRODUCT_SPEC.md](PRODUCT_SPEC.md) |
 | Backend dev | [backend/README.md](../backend/README.md), [DATABASE_SCHEMA.md](DATABASE_SCHEMA.md) |
 | iOS dev | [ios/SeedJournal/README.md](../ios/SeedJournal/README.md), [SCREEN_MAP.md](SCREEN_MAP.md) |
-| Ship / ops | [SHIP_PREP.md](SHIP_PREP.md), [STAGING_VERIFY.md](STAGING_VERIFY.md) |
+| Ship / ops | [COMPLETION_STATUS.md](COMPLETION_STATUS.md), [SHIP_PREP.md](SHIP_PREP.md), [STAGING_VERIFY.md](STAGING_VERIFY.md) |
+| QA | [EMOTIONAL_QA_SCRIPT.md](EMOTIONAL_QA_SCRIPT.md) |
 | CI failures | [TROUBLESHOOTING_CI.md](TROUBLESHOOTING_CI.md) |
 
 ---

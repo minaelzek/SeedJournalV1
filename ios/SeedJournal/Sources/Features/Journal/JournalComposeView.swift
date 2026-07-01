@@ -147,19 +147,19 @@ struct JournalComposeView: View {
     @ViewBuilder
     private var editor: some View {
         TextField("Title (optional)", text: $viewModel.title)
-            .font(DesignTokens.FontToken.journal(17))
+            .font(DesignTokens.FontToken.journalDynamic(.title3))
             .foregroundStyle(DesignTokens.ColorToken.ink)
 
         ZStack(alignment: .topLeading) {
             if viewModel.bodyText.isEmpty {
                 Text("Write freely. This space is only yours.")
-                    .font(DesignTokens.FontToken.journal(17))
+                    .font(DesignTokens.FontToken.journalDynamic(.body))
                     .foregroundStyle(DesignTokens.ColorToken.ink.opacity(0.35))
                     .padding(.top, 8)
                     .padding(.leading, 4)
             }
             TextEditor(text: $viewModel.bodyText)
-                .font(DesignTokens.FontToken.journal(17))
+                .font(DesignTokens.FontToken.journalDynamic(.body))
                 .foregroundStyle(DesignTokens.ColorToken.ink)
                 .scrollContentBackground(.hidden)
                 .frame(minHeight: 220)

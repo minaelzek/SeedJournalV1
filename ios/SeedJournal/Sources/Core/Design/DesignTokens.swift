@@ -37,6 +37,15 @@ enum DesignTokens {
         static func journal(_ size: CGFloat) -> Font {
             .system(size: size, weight: .regular, design: .default)
         }
+
+        /// Respects Dynamic Type (journal fields, body copy).
+        static func journalDynamic(_ style: Font.TextStyle = .body) -> Font {
+            .system(style, design: .default)
+        }
+
+        static func editorialDynamic(_ style: Font.TextStyle = .title3) -> Font {
+            .system(style, weight: .medium, design: .serif)
+        }
     }
 
     enum Spacing {

@@ -8,5 +8,6 @@ ADRs capture significant technical choices. New ADRs increment the number and st
 | [002](002-tree-centric-navigation.md) | Accepted | Tree-centric navigation |
 | [003](003-sign-in-with-apple.md) | Accepted | Sign in with Apple (v1) |
 | [004](004-inline-pipeline-in-tests.md) | Accepted | Inline pipeline under pytest |
+| [005](005-optional-hnsw-index.md) | Accepted | HNSW outside Alembic CI |
 
 **Template for new ADRs:** Context → Decision → Consequences (see 001).
