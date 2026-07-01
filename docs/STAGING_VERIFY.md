@@ -142,6 +142,21 @@ SEEDJOURNAL_API_BASE_URL = https:/$()/seedjournal-api-staging.fly.dev/v1
 
 ---
 
+## Staging verified (API healthy)
+
+When smoke + auth readiness pass:
+
+- **URL:** https://seedjournal-api-staging.fly.dev/v1  
+- **iOS:** Scheme **SeedJournal-Staging** on a physical device  
+- **Auth:** [`AUTH_FULL_SETUP.md`](AUTH_FULL_SETUP.md)  
+
+```powershell
+.\scripts\smoke_staging.ps1 -BaseUrl https://seedjournal-api-staging.fly.dev
+.\scripts\verify_staging_auth_readiness.ps1
+```
+
+---
+
 ## Part 4 — When staging is verified
 
 Reply **“staging is deployed”** with:

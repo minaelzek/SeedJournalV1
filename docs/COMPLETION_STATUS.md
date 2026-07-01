@@ -46,7 +46,7 @@
 | URL | Expected |
 |-----|----------|
 | GitHub Pages privacy | ✅ loads (verify periodically) |
-| `seedjournal-api-staging.fly.dev/health` | ⏳ deploy **Gate 2** in [`SHIP_CHECKLIST.md`](SHIP_CHECKLIST.md) |
+| `seedjournal-api-staging.fly.dev/health` | ✅ when smoke passes — Gate 3 iPhone + [`AUTH_FULL_SETUP.md`](AUTH_FULL_SETUP.md) |
 
 Run locally: `powershell -File scripts/validate_ship_prereqs.ps1`
 

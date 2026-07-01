@@ -3,6 +3,7 @@ from typing import Any
 
 import httpx
 from jose import jwk, jwt
+from jose.exceptions import JWTError
 from jose.utils import base64url_decode
 
 from app.core.config import Settings
@@ -23,7 +24,10 @@ async def fetch_apple_jwks() -> dict[str, Any]:
 
 
 def _verify_apple_identity_token(identity_token: str, settings: Settings, jwks: dict[str, Any]) -> dict:
-    headers = jwt.get_unverified_header(identity_token)
+    try:
+        headers = jwt.get_unverified_header(identity_token)
+    except JWTError as exc:
+        raise AppleAuthError("Invalid Apple identity token") from exc
     kid = headers.get("kid")
     if not kid:
         raise AppleAuthError("Missing key id in Apple token")
@@ -33,7 +37,10 @@ def _verify_apple_identity_token(identity_token: str, settings: Settings, jwks: 
         raise AppleAuthError("Apple public key not found")
 
     public_key = jwk.construct(key)
-    message, encoded_sig = identity_token.rsplit(".", 1)
+    try:
+        message, encoded_sig = identity_token.rsplit(".", 1)
+    except ValueError as exc:
+        raise AppleAuthError("Invalid Apple identity token") from exc
     decoded_sig = base64url_decode(encoded_sig.encode())
     if not public_key.verify(message.encode(), decoded_sig):
         raise AppleAuthError("Invalid Apple token signature")
@@ -50,7 +57,10 @@ def _verify_apple_identity_token(identity_token: str, settings: Settings, jwks: 
 
 
 async def verify_apple_identity_token(identity_token: str, settings: Settings) -> dict:
-    jwks = await fetch_apple_jwks()
+    try:
+        jwks = await fetch_apple_jwks()
+    except httpx.HTTPError as exc:
+        raise AppleAuthError("Could not reach Apple sign-in service") from exc
     return _verify_apple_identity_token(identity_token, settings, jwks)
 
 

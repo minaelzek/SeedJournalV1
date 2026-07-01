@@ -33,6 +33,8 @@ try {
     } elseif ($code -eq 503 -or $code -eq 502) {
         Write-Host "FAIL API still unhealthy ($code)"
         $fail++
+    } elseif ($code -eq 500) {
+        Write-Host "WARN POST /v1/auth/apple returned 500 (deploy latest API for 401 on bad tokens)"
     } else {
         Write-Host "OK   POST /v1/auth/apple rejected ($code)"
     }
