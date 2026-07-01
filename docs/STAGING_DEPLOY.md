@@ -1,5 +1,7 @@
 # Staging Deployment
 
+> **Start here:** [`SHIP_CHECKLIST.md`](SHIP_CHECKLIST.md) and [`STAGING_VERIFY.md`](STAGING_VERIFY.md) (canonical step-by-step). This file is extended reference.
+
 Deploy the FastAPI backend to **Fly.io** (recommended) or **Railway**. iOS TestFlight builds point at staging via `Staging.xcconfig`.
 
 ---

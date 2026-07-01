@@ -21,6 +21,8 @@ No tracking, no third-party advertising.
 
 Recommend **12+** or **17+** depending on unrestricted journal + AI content; no explicit encouragement of harmful behavior.
 
+Operator checklist: [`SHIP_CHECKLIST.md`](SHIP_CHECKLIST.md) · ASC copy: [`APP_STORE_CONNECT_COPY.md`](APP_STORE_CONNECT_COPY.md)
+
 ## Required before submission
 
 - [x] Sign in with Apple + Keychain (code shipped; verify on device)

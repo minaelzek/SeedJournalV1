@@ -5,7 +5,7 @@
 
 CI failed? See [`docs/TROUBLESHOOTING_CI.md`](docs/TROUBLESHOOTING_CI.md).
 
-**MVP status:** [`docs/COMPLETION_STATUS.md`](docs/COMPLETION_STATUS.md) — code complete; App Store requires your Fly/Apple/QA steps.
+**MVP status:** [`docs/COMPLETION_STATUS.md`](docs/COMPLETION_STATUS.md) — code complete. **Ship:** [`docs/SHIP_CHECKLIST.md`](docs/SHIP_CHECKLIST.md).
 
 A premium AI-guided reflection journal for young adults. Thoughts become memories; memories become insights; growth is shown through a living sakura tree—not gamification.
 
