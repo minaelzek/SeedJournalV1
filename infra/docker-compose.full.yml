@@ -1,0 +1,35 @@
+# Optional: API + Postgres for staging-like local run
+# Usage: docker compose -f docker-compose.full.yml up --build
+services:
+  postgres:
+    image: pgvector/pgvector:pg16
+    environment:
+      POSTGRES_USER: seedjournal
+      POSTGRES_PASSWORD: seedjournal_dev
+      POSTGRES_DB: seedjournal
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U seedjournal -d seedjournal"]
+      interval: 5s
+      retries: 5
+
+  api:
+    build:
+      context: ../backend
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      APP_ENV: development
+      DATABASE_URL: postgresql+asyncpg://seedjournal:seedjournal_dev@postgres:5432/seedjournal
+      JWT_SECRET: dev-docker-secret
+      LLM_PROVIDER: stub
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+volumes:
+  pgdata:

@@ -1,0 +1,1 @@
+"""SeedJournal API application package."""

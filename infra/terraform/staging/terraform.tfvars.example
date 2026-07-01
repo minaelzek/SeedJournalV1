@@ -1,0 +1,14 @@
+fly_org        = "personal"
+app_name       = "seedjournal-api-staging"
+primary_region = "iad"
+
+# fly auth token — do not commit real values
+fly_api_token = "fo1_..."
+
+database_url = "postgresql+asyncpg://USER:PASS@ep-xxx.neon.tech/neondb?sslmode=require"
+jwt_secret   = "replace-with-openssl-rand-hex-32"
+
+apple_client_id = "com.seedjournal.app"
+llm_provider    = "openai"
+openai_api_key  = "sk-..."
+cors_origins    = "https://seedjournal.app"

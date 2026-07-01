@@ -1,0 +1,68 @@
+name: iOS CI
+
+on:
+  push:
+    branches: [main, master]
+    paths:
+      - "ios/**"
+      - ".github/workflows/ios.yml"
+  pull_request:
+    paths:
+      - "ios/**"
+
+jobs:
+  build:
+    runs-on: macos-14
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install XcodeGen
+        run: brew install xcodegen
+
+      - name: Generate Xcode project
+        working-directory: ios
+        run: xcodegen generate
+
+      - name: Build Debug (Simulator)
+        working-directory: ios
+        run: |
+          set -o pipefail
+          xcodebuild \
+            -project SeedJournal.xcodeproj \
+            -scheme SeedJournal \
+            -configuration Debug \
+            -destination 'platform=iOS Simulator,name=iPhone 16' \
+            CODE_SIGNING_ALLOWED=NO \
+            build 2>&1 | tee xcodebuild.log
+          grep -q "BUILD SUCCEEDED" xcodebuild.log
+
+      - name: Build Staging (Simulator)
+        working-directory: ios
+        run: |
+          set -o pipefail
+          xcodebuild \
+            -project SeedJournal.xcodeproj \
+            -scheme SeedJournal-Staging \
+            -configuration Staging \
+            -destination 'platform=iOS Simulator,name=iPhone 16' \
+            CODE_SIGNING_ALLOWED=NO \
+            build 2>&1 | tee xcodebuild-staging.log
+          grep -q "BUILD SUCCEEDED" xcodebuild-staging.log
+
+  # testflight:
+  #   needs: build
+  #   if: github.ref == 'refs/heads/main'
+  #   runs-on: macos-14
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #     - uses: apple-actions/import-codesign-certs@v3
+  #       with:
+  #         p12-file-base64: ${{ secrets.IOS_P12_BASE64 }}
+  #         p12-password: ${{ secrets.IOS_P12_PASSWORD }}
+  #     - run: brew install xcodegen fastlane
+  #     - working-directory: ios
+  #       run: fastlane beta
+  #       env:
+  #         APP_STORE_CONNECT_API_KEY_ID: ${{ secrets.ASC_KEY_ID }}
+  #         APP_STORE_CONNECT_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
+  #         APP_STORE_CONNECT_API_KEY_CONTENT: ${{ secrets.ASC_KEY_CONTENT }}

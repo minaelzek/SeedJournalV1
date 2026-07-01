@@ -1,0 +1,34 @@
+# Optional TestFlight automation — requires signing certs + App Store Connect API key
+# Run from ios/: fastlane beta
+
+default_platform(:ios)
+
+platform :ios do
+  desc "Build Staging and upload to TestFlight"
+  lane :beta do
+    sh("xcodegen generate")
+    build_app(
+      project: "SeedJournal.xcodeproj",
+      scheme: "SeedJournal-Staging",
+      configuration: "Staging",
+      export_method: "app-store",
+      skip_package_dependencies_resolution: false
+    )
+    upload_to_testflight(
+      skip_waiting_for_build_processing: true
+    )
+  end
+
+  desc "Compile only (CI-style)"
+  lane :compile do
+    sh("xcodegen generate")
+    build_app(
+      project: "SeedJournal.xcodeproj",
+      scheme: "SeedJournal",
+      configuration: "Debug",
+      destination: "generic/platform=iOS Simulator",
+      skip_archive: true,
+      skip_codesigning: true
+    )
+  end
+end

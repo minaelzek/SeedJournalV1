@@ -1,0 +1,38 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.env
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Accidental nested clone
+SeedJournalV1/
+
+# iOS
+ios/*.xcodeproj/
+ios/*.xcworkspace/
+ios/**/DerivedData/
+ios/**/*.xcuserstate
+ios/**/xcuserdata/
+*.ipa
+*.dSYM.zip
+
+# IDE
+.idea/
+.vscode/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Secrets
+.env.local
+*.pem
+
+# Docker
+infra/pgdata/

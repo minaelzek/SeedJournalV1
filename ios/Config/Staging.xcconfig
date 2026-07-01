@@ -1,0 +1,2 @@
+SEEDJOURNAL_API_BASE_URL = https:/$()/seedjournal-api-staging.fly.dev/v1
+SEEDJOURNAL_PRIVACY_URL = https:/$()/seedjournal.app/privacy
