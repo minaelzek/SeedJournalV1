@@ -28,7 +28,7 @@ Create under `docs/` before major implementation:
 
 ## Phase 3 — Implementation (Incremental Vertical Slices)
 
-### Slice 0 — Foundation (Week 1 equivalent)
+### Slice 0 — Foundation ✅
 
 - Init `git`, README, `.gitignore`, `docker-compose.yml` (Postgres + pgvector)
 - FastAPI skeleton: health, `/v1`, OpenAPI, settings, Alembic
@@ -36,28 +36,28 @@ Create under `docs/` before major implementation:
 - Sign in with Apple + JWT (or session cookie pattern for web admin later)
 - **Review:** security (token storage Keychain), no secrets in repo
 
-### Slice 1 — Journal Core
+### Slice 1 — Journal Core ✅
 
 - Create/read journal entries (user-owned)
 - SwiftUI: tree home + floating/sheet **Journal** compose
 - API: `POST/GET /v1/entries`
 - **Review:** UX calm typography, no chat bubbles as default metaphor
 
-### Slice 2 — AI Guide (Controlled)
+### Slice 2 — AI Guide (Controlled) ✅
 
 - Post-save optional 1–2 questions; user chooses **Continue** or **Save**
 - Conversation stored as `reflection_turns` linked to entry
 - Prompt layer: listen-first, no authority tone
 - **Review:** AI behavior checklist vs product principles
 
-### Slice 3 — Memory Extraction + Vectors
+### Slice 3 — Memory Extraction + Vectors ✅
 
 - Background job: extract memory candidates (values, beliefs, goals, patterns, moments, realizations)
 - Embed with pgvector; link `source_entry_id`
 - Retrieval API for “related memories” and timeline queries
 - **Review:** hallucination guards, logging excludes body text
 
-### Slice 4 — Sakura Tree v1
+### Slice 4 — Sakura Tree v1 ✅
 
 - State model: Seed → Sprout → Sapling → Sakura → Blooming
 - Roots / branches / leaves / flowers as **data-driven visualization** (not XP)
@@ -65,14 +65,14 @@ Create under `docs/` before major implementation:
 - Seasons: winter narrative without punishment
 - **Review:** UX + architecture — tree module isolated from journal text
 
-### Slice 5 — History & Self-Queries
+### Slice 5 — History & Self-Queries ✅
 
 - Past reflections browser (editorial list, not feed)
 - “When did I first talk about X?” via semantic search + UI
 - Pattern summaries (careful, non-diagnostic language)
 - **Review:** performance on vector search, pagination
 
-### Slice 6 — Production Hardening
+### Slice 6 — Production Hardening ✅
 
 - Rate limits, idempotency keys, retries on AI steps
 - Observability (metrics, tracing), backup strategy

@@ -21,4 +21,6 @@ uvicorn app.main:app --reload --host 127.0.0.1 --port 8000
 
 **Intelligence (Slice 3):** After `reflection/complete`, background pipeline analyzes entry, extracts memories, embeds (stub vectors in dev), updates tree leaves.
 
-**Reflection (Slice 2):** `POST /v1/entries/{id}/reflection/start`, `.../message`, `.../complete` — max 6 turns, stub LLM in dev.
+**Reflection:** `POST /v1/entries/{id}/reflection/start`, `.../message`, `.../complete` — max 6 turns.
+
+Full route list: [`docs/API.md`](../docs/API.md). Architecture: [`docs/TECHNICAL_ARCHITECTURE.md`](../docs/TECHNICAL_ARCHITECTURE.md).

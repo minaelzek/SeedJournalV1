@@ -1,0 +1,24 @@
+name: Feature request
+description: Idea that fits SeedJournal's calm, private journal vision
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: User problem
+      description: Not a solution yet — what job is the user trying to do?
+    validations:
+      required: true
+  - type: checkboxes
+    id: principles
+    attributes:
+      label: Product fit
+      options:
+        - label: Does not add social, streaks, or public profiles
+          required: true
+        - label: Keeps user in control of reflection sessions
+          required: true
+  - type: textarea
+    id: notes
+    attributes:
+      label: Additional context
