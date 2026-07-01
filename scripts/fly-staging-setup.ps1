@@ -20,7 +20,7 @@ Write-Host @"
     LLM_PROVIDER="openai" `
     OPENAI_API_KEY="sk-..." `
     CORS_ORIGINS="https://minaelzek.github.io"
-  fly deploy -a $AppName
+  fly deploy -c fly.staging.toml
 "@
 
 Write-Host ""

@@ -52,7 +52,7 @@ bash scripts/smoke_staging.sh https://seedjournal-api-staging.fly.dev
 
 Edit `ios/Config/Staging.xcconfig` if your Fly app name differs.
 
-Full detail: [`STAGING_DEPLOY.md`](STAGING_DEPLOY.md)
+Step-by-step verify: [`STAGING_VERIFY.md`](STAGING_VERIFY.md) · reference: [`STAGING_DEPLOY.md`](STAGING_DEPLOY.md)
 
 ---
 
