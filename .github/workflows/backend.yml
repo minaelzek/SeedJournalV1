@@ -58,7 +58,10 @@ jobs:
           done
 
       - name: Alembic upgrade
-        run: alembic upgrade head
+        run: |
+          alembic history
+          alembic upgrade head
+          alembic current
 
       - name: Pytest
         run: pytest -v --tb=short

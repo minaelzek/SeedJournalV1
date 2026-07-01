@@ -1,14 +1,17 @@
-"""HNSW index for memory embeddings (production vector search)
+"""Optional HNSW index (run manually on production if desired)
 
 Revision ID: 002
 Revises: 001
 Create Date: 2026-03-30
 
+CI runs this as a no-op. After deploy with real traffic, optional:
+
+  psql $DATABASE_URL -f infra/sql/create_hnsw_index.sql
+
 """
 
 from typing import Sequence, Union
 
-import sqlalchemy as sa
 from alembic import op
 
 revision: str = "002"
@@ -18,21 +21,9 @@ depends_on: Union[str, Sequence[str], None] = None
 
 
 def upgrade() -> None:
-    conn = op.get_bind()
-    try:
-        conn.execute(
-            sa.text(
-                """
-                CREATE INDEX IF NOT EXISTS ix_memory_embeddings_hnsw
-                ON memory_embeddings
-                USING hnsw (embedding vector_cosine_ops)
-                WITH (m = 16, ef_construction = 64)
-                """
-            )
-        )
-    except Exception:
-        # CI / older pgvector: skip index; search still works (Python fallback in app)
-        pass
+    # Intentionally empty — HNSW on empty tables can fail on some pgvector builds
+    # and a failed statement aborts Alembic's transaction (CI migrate step).
+    pass
 
 
 def downgrade() -> None:

@@ -22,7 +22,8 @@ View logs: https://github.com/minaelzek/SeedJournalV1/actions/workflows/backend.
 |---------|-----|
 | `connection refused` | Postgres service not ready — workflow waits 30s; re-run job |
 | `extension "vector" does not exist` | Wrong Postgres image — must be `pgvector/pgvector:pg16` |
-| HNSW / index error | Migration 002 catches and skips HNSW if unsupported |
+| HNSW / index error | Migration **002 is a no-op**; run `infra/sql/create_hnsw_index.sql` on prod manually |
+| `type "memory_type" already exists` | Fixed in 001 via `CREATE TYPE ... EXCEPTION` + `create_type=False` |
 
 ### Pytest — auth skipped vs failed
 

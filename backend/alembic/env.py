@@ -7,6 +7,12 @@ from sqlalchemy import engine_from_config, pool
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
 
+# Register pgvector types for autogenerate / reflection
+try:
+    import pgvector.sqlalchemy  # noqa: F401
+except ImportError:
+    pass
+
 from app.core.config import get_settings
 from app.db.base import Base
 import app.db.models  # noqa: F401
@@ -16,6 +22,8 @@ config = context.config
 if config.config_file_name is not None:
     fileConfig(config.config_file_name)
 
+# Fresh process in CI still benefits from explicit env read
+get_settings.cache_clear()
 settings = get_settings()
 config.set_main_option("sqlalchemy.url", settings.database_url_sync)
 
