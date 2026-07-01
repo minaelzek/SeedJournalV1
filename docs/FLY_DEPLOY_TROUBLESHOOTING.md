@@ -45,6 +45,39 @@ Uses Fly’s CI environment; may succeed when your laptop CLI does not.
 
 ---
 
+## 502 Bad Gateway right after deploy
+
+DNS and machine exist, but Fly’s proxy gets no healthy app (common on **first deploy**).
+
+```powershell
+fly status -a seedjournal-api-staging
+fly logs -a seedjournal-api-staging
+```
+
+**Typical log patterns:**
+
+| Message | Fix |
+|---------|-----|
+| `could not connect to server` / `SSL` / `password authentication` | Fix `DATABASE_URL`: must be `postgresql+asyncpg://user:pass@host/db?sslmode=require` (Neon **pooled** or direct host) |
+| `extension "vector" does not exist` | Neon SQL: `CREATE EXTENSION IF NOT EXISTS vector;` |
+| Alembic / `DuplicateTable` / migration | `fly ssh console -a seedjournal-api-staging -C "alembic upgrade head"` and read error |
+| App starts then killed | `fly scale memory 512 -a seedjournal-api-staging` if OOM |
+
+After fixing secrets:
+
+```powershell
+fly secrets set -a seedjournal-api-staging DATABASE_URL="postgresql+asyncpg://..."
+fly apps restart seedjournal-api-staging
+```
+
+Wait 30–60s (cold start), then:
+
+```powershell
+.\scripts\smoke_staging.ps1 -BaseUrl https://seedjournal-api-staging.fly.dev
+```
+
+---
+
 ## After deploy: app won’t start
 
 ```powershell
