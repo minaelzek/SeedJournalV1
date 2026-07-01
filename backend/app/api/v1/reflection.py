@@ -1,4 +1,3 @@
-import os
 from datetime import datetime
 from uuid import UUID
 
@@ -11,6 +10,7 @@ from app.core.config import Settings, get_settings
 from app.core.deps import get_db
 from app.db.models import User
 from app.journal.service import get_entry_for_user
+from app.workers.hooks import pipeline_runs_inline
 from app.workers.tasks import enqueue_entry_pipeline
 from app.reflection.service import (
     ReflectionError,
@@ -182,8 +182,7 @@ async def complete_entry_reflection(
     except ReflectionError as exc:
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=str(exc)) from exc
 
-    # TestClient / CI: run pipeline inline so memory/tree tests are reliable
-    if os.getenv("PYTEST_CURRENT_TEST"):
+    if pipeline_runs_inline():
         await enqueue_entry_pipeline(user.id, entry_id)
     else:
         background_tasks.add_task(enqueue_entry_pipeline, user.id, entry_id)
