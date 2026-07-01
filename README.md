@@ -2,7 +2,7 @@
 
 A premium AI-guided reflection journal for young adults. Thoughts become memories; memories become insights; growth is shown through a living sakura tree—not gamification.
 
-**Status:** Feature-complete MVP + ship prep (XcodeGen, Keychain, Sign in with Apple, OpenAI provider, Docker, privacy draft). See [`docs/SHIP_PREP.md`](docs/SHIP_PREP.md) · [`docs/STAGING_DEPLOY.md`](docs/STAGING_DEPLOY.md) · [`docs/TESTFLIGHT.md`](docs/TESTFLIGHT.md) · CI: backend + iOS workflows. See `docs/` and run backend per `backend/README.md`.
+**Status:** Feature-complete MVP + ship prep (XcodeGen, Keychain, Sign in with Apple, OpenAI provider, Docker, privacy draft). First push: [`docs/GITHUB_SETUP.md`](docs/GITHUB_SETUP.md). See [`docs/SHIP_PREP.md`](docs/SHIP_PREP.md) · [`docs/STAGING_DEPLOY.md`](docs/STAGING_DEPLOY.md) · [`docs/TESTFLIGHT.md`](docs/TESTFLIGHT.md) · CI: backend + iOS workflows. See `docs/` and run backend per `backend/README.md`.
 
 ## Philosophy
 
