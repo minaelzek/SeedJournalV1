@@ -30,7 +30,7 @@ jobs:
           cp docs/legal/privacy.html _site/privacy.html
           mkdir -p _site/privacy && cp docs/legal/privacy.html _site/privacy/index.html
 
-      - uses: actions/configure-pages@v5
+      - uses: actions/configure-pages@v6
       - uses: actions/upload-pages-artifact@v3
         with:
           path: _site
