@@ -59,6 +59,8 @@ Detail: [`STAGING_VERIFY.md`](STAGING_VERIFY.md)
 
 ## Gate 3 — iOS device (Mac ~45 min)
 
+Auth: [`AUTH_FULL_SETUP.md`](AUTH_FULL_SETUP.md) · verify API: `.\scripts\verify_staging_auth_readiness.ps1`
+
 - [ ] `brew install xcodegen && cd ios && xcodegen generate`
 - [ ] Xcode → Signing → your Team → `com.seedjournal.app`
 - [ ] **1024×1024** App Icon in Assets

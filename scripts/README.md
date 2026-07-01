@@ -6,5 +6,6 @@
 | `smoke_staging.ps1` | `-BaseUrl https://seedjournal-api-staging.fly.dev` |
 | `smoke_staging.sh` | Same for Bash |
 | `fly-staging-setup.ps1` | Prints Fly secret/deploy commands |
+| `verify_staging_auth_readiness.ps1` | Health + auth routes before iPhone sign-in |
 
 See [`docs/SHIP_CHECKLIST.md`](../docs/SHIP_CHECKLIST.md).

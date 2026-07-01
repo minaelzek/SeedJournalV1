@@ -65,6 +65,7 @@ SeedJournalV1/
 | iOS dev | [ios/SeedJournal/README.md](../ios/SeedJournal/README.md), [SCREEN_MAP.md](SCREEN_MAP.md) |
 | Ship / ops | [SHIP_CHECKLIST.md](SHIP_CHECKLIST.md), [COMPLETION_STATUS.md](COMPLETION_STATUS.md), [STAGING_VERIFY.md](STAGING_VERIFY.md) |
 | QA | [EMOTIONAL_QA_SCRIPT.md](EMOTIONAL_QA_SCRIPT.md) |
+| Auth (Apple + staging) | [AUTH_FULL_SETUP.md](AUTH_FULL_SETUP.md) |
 | CI failures | [TROUBLESHOOTING_CI.md](TROUBLESHOOTING_CI.md) |
 
 ---
