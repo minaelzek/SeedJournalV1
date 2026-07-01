@@ -12,6 +12,7 @@ final class JournalComposeViewModel {
     var reflectionStart: ReflectionStartResponse?
 
     private let client: APIClient
+    private let saveIdempotencyKey = UUID().uuidString
     let aiDepthEnabled: Bool
 
     init(accessToken: String?, aiDepthEnabled: Bool = true) {
@@ -33,7 +34,11 @@ final class JournalComposeViewModel {
             body: bodyText
         )
         do {
-            savedEntry = try await client.post("/entries", body: payload)
+            savedEntry = try await client.post(
+                "/entries",
+                body: payload,
+                idempotencyKey: saveIdempotencyKey
+            )
             showContinueChoice = true
         } catch {
             errorMessage = (error as? LocalizedError)?.errorDescription ?? "Could not save."

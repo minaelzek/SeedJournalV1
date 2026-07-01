@@ -19,8 +19,12 @@ enum APIError: LocalizedError {
 struct APIClient {
     var accessToken: String?
 
-    func post<T: Encodable, R: Decodable>(_ path: String, body: T) async throws -> R {
-        try await request(path, method: "POST", body: body)
+    func post<T: Encodable, R: Decodable>(
+        _ path: String,
+        body: T,
+        idempotencyKey: String? = nil
+    ) async throws -> R {
+        try await request(path, method: "POST", body: body, idempotencyKey: idempotencyKey)
     }
 
     func get<R: Decodable>(_ path: String) async throws -> R {
@@ -34,16 +38,18 @@ struct APIClient {
     private func request<T: Encodable, R: Decodable>(
         _ path: String,
         method: String,
-        body: T
+        body: T,
+        idempotencyKey: String? = nil
     ) async throws -> R {
         let data = try JSONEncoder.api.encode(body)
-        return try await request(path, method: method, bodyData: data)
+        return try await request(path, method: method, bodyData: data, idempotencyKey: idempotencyKey)
     }
 
     private func request<R: Decodable>(
         _ path: String,
         method: String,
-        bodyData: Data?
+        bodyData: Data?,
+        idempotencyKey: String? = nil
     ) async throws -> R {
         var url = APIConfig.baseURL
         url.append(path: path.trimmingCharacters(in: CharacterSet(charactersIn: "/")))
@@ -53,6 +59,9 @@ struct APIClient {
         req.setValue("application/json", forHTTPHeaderField: "Content-Type")
         if let accessToken {
             req.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
+        }
+        if let idempotencyKey {
+            req.setValue(idempotencyKey, forHTTPHeaderField: "Idempotency-Key")
         }
         if let bodyData {
             req.httpBody = bodyData

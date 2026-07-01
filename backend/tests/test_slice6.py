@@ -24,6 +24,6 @@ def test_entry_idempotency(client, auth_headers):
     assert r1.json()["id"] == r2.json()["id"]
 
 
-def test_delete_account(client, auth_headers):
-    r = client.delete("/v1/me", headers=auth_headers)
+def test_delete_account(client, auth_headers_ephemeral):
+    r = client.delete("/v1/me", headers=auth_headers_ephemeral)
     assert r.status_code == 204

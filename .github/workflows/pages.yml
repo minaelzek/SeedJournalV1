@@ -3,9 +3,6 @@ name: GitHub Pages — Privacy
 on:
   push:
     branches: [main]
-    paths:
-      - "docs/legal/**"
-      - ".github/workflows/pages.yml"
   workflow_dispatch:
 
 permissions:
