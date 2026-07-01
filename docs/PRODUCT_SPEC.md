@@ -1,6 +1,6 @@
 # SeedJournal — Product Specification
 
-**Version:** 0.1 (Phase 2)  
+**Version:** 0.1.0 (MVP — see [COMPLETION_STATUS.md](COMPLETION_STATUS.md))  
 **Positioning:** Premium private reflection journal with AI guide and living sakura tree — not therapy, not social, not gamified.
 
 ---

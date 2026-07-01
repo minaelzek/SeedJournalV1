@@ -83,15 +83,15 @@ Create under `docs/` before major implementation:
 
 ## Phase 4 — App Store Polish
 
-| Area | Actions |
-|------|---------|
-| Visual | Token audit, dark mode, tree animation budget (60fps target) |
-| Motion | Subtle bloom/season transitions; reduce motion respect |
-| Onboarding | 3 calm screens: sanctuary, tree metaphor, AI as guide |
-| Accessibility | VoiceOver tree summary, Dynamic Type, contrast |
-| Performance | Cold start, entry save latency, offline graceful messaging |
-| Emotional QA | Script-based walkthrough: “mature, not childish” |
-| Submission | Screenshots, App Privacy labels, age rating, review notes |
+| Area | Repo status | Operator |
+|------|-------------|----------|
+| Visual | ✅ tokens, dark gradients, sakura canvas | App Icon 1024 |
+| Motion | ✅ reduce motion on leaves | Device perf check |
+| Onboarding | ✅ 3 screens | — |
+| Accessibility | ✅ VoiceOver tree; Dynamic Type journal | Audit on device |
+| Performance | Baseline | Profile on device |
+| Emotional QA | ✅ [`EMOTIONAL_QA_SCRIPT.md`](EMOTIONAL_QA_SCRIPT.md) | Run on TestFlight |
+| Submission | ✅ readiness + screenshot copy docs | ASC upload |
 
 ---
 
@@ -150,8 +150,8 @@ SeedJournalV1/
 
 ## Immediate Next Actions
 
-1. **Ship prep:** Xcode project, Sign in with Apple, Keychain, production deploy, TestFlight.  
-2. **Define LLM provider + Apple Developer** credentials in secure env (not in repo).  
-3. `docker compose up` in `infra/` for local Postgres.
+**Repo engineering complete.** See [`COMPLETION_STATUS.md`](COMPLETION_STATUS.md) and [`NEXT_STEPS_AFTER_CI.md`](NEXT_STEPS_AFTER_CI.md).
 
-Phase 2 complete. Slice 0 foundation landed.
+1. Staging API (Fly + Neon)  
+2. TestFlight (Mac + Apple Developer)  
+3. App Store submission

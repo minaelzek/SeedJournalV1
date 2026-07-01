@@ -24,7 +24,7 @@ Recommend **12+** or **17+** depending on unrestricted journal + AI content; no 
 ## Required before submission
 
 - [x] Sign in with Apple + Keychain (code shipped; verify on device)
-- [ ] Hosted privacy policy URL (enable GitHub Pages: `.github/workflows/pages.yml` → `https://<user>.github.io/SeedJournalV1/privacy/`)
+- [ ] Hosted privacy policy URL verified in browser → `https://minaelzek.github.io/SeedJournalV1/privacy/` (Pages: GitHub Actions)
 - [ ] Screenshot set — see `docs/APP_STORE_SCREENSHOTS.md`
 - [ ] Production API + TLS
 - [ ] App icons, screenshots (tree home, journal, calm palette)
