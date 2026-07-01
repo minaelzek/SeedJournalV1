@@ -58,6 +58,8 @@ Simulator: DEBUG → `http://127.0.0.1:8000/v1` · Dev sign-in in DEBUG builds.
 
 ## Documentation
 
+- [Repository map & ADRs](docs/REPOSITORY.md)
+- [HTTP API reference](docs/API.md)
 - [Product spec](docs/PRODUCT_SPEC.md)
 - [Technical architecture](docs/TECHNICAL_ARCHITECTURE.md)
 - [Execution plan](docs/EXECUTION_PLAN.md)

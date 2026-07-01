@@ -1,6 +1,6 @@
 # SeedJournal — Technical Architecture
 
-**Version:** 0.1 (Phase 2)
+**Version:** 0.2 (MVP shipped) · See [API.md](API.md) and [REPOSITORY.md](REPOSITORY.md)
 
 ---
 
@@ -49,8 +49,13 @@ docs/
 | GET | `/me` |
 | POST / GET | `/entries` |
 | GET | `/entries/{id}` |
-| POST | `/entries/{id}/reflection` |
-| POST | `/entries/{id}/complete` |
+| POST | `/entries/{id}/reflection/start` |
+| POST | `/entries/{id}/reflection/message` |
+| POST | `/entries/{id}/reflection/complete` |
+| PATCH | `/me` |
+| GET | `/me/export` |
+| GET | `/insights/patterns` |
+| GET | `/insights/first-mention` |
 | GET | `/memories` |
 | POST | `/memories/search` |
 | PATCH | `/memories/{id}` |
