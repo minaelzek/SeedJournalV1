@@ -58,6 +58,7 @@ fly logs -a seedjournal-api-staging
 
 | Message | Fix |
 |---------|-----|
+| `could not translate host name "YOUR_NEON_URL"` | You pasted the **doc placeholder**. Set a real Neon host in `fly secrets set` (see below). |
 | `could not connect to server` / `SSL` / `password authentication` | Fix `DATABASE_URL`: must be `postgresql+asyncpg://user:pass@host/db?sslmode=require` (Neon **pooled** or direct host) |
 | `extension "vector" does not exist` | Neon SQL: `CREATE EXTENSION IF NOT EXISTS vector;` |
 | Alembic / `DuplicateTable` / migration | `fly ssh console -a seedjournal-api-staging -C "alembic upgrade head"` and read error |
