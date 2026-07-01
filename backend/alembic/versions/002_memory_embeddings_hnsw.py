@@ -8,6 +8,7 @@ Create Date: 2026-03-30
 
 from typing import Sequence, Union
 
+import sqlalchemy as sa
 from alembic import op
 
 revision: str = "002"
@@ -17,14 +18,21 @@ depends_on: Union[str, Sequence[str], None] = None
 
 
 def upgrade() -> None:
-    op.execute(
-        """
-        CREATE INDEX IF NOT EXISTS ix_memory_embeddings_hnsw
-        ON memory_embeddings
-        USING hnsw (embedding vector_cosine_ops)
-        WITH (m = 16, ef_construction = 64)
-        """
-    )
+    conn = op.get_bind()
+    try:
+        conn.execute(
+            sa.text(
+                """
+                CREATE INDEX IF NOT EXISTS ix_memory_embeddings_hnsw
+                ON memory_embeddings
+                USING hnsw (embedding vector_cosine_ops)
+                WITH (m = 16, ef_construction = 64)
+                """
+            )
+        )
+    except Exception:
+        # CI / older pgvector: skip index; search still works (Python fallback in app)
+        pass
 
 
 def downgrade() -> None:

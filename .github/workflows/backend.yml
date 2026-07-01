@@ -27,7 +27,12 @@ jobs:
           --health-cmd "pg_isready -U seedjournal -d seedjournal"
           --health-interval 5s
           --health-timeout 5s
-          --health-retries 10
+          --health-retries 12
+
+    env:
+      DATABASE_URL: postgresql+asyncpg://seedjournal:seedjournal@localhost:5432/seedjournal
+      APP_ENV: development
+      JWT_SECRET: ci-secret
 
     defaults:
       run:
@@ -39,24 +44,23 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-          cache: pip
-          cache-dependency-path: backend/pyproject.toml
 
-      - name: Install
-        run: pip install -e ".[dev]"
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e ".[dev]"
 
-      - name: Migrate
-        env:
-          DATABASE_URL: postgresql+asyncpg://seedjournal:seedjournal@localhost:5432/seedjournal
-          APP_ENV: development
-          JWT_SECRET: ci-secret
+      - name: Wait for Postgres
+        run: |
+          for i in $(seq 1 30); do
+            python -c "import socket; s=socket.socket(); s.settimeout(1); s.connect(('127.0.0.1',5432)); s.close()" && break
+            sleep 1
+          done
+
+      - name: Alembic upgrade
         run: alembic upgrade head
 
       - name: Pytest
-        env:
-          DATABASE_URL: postgresql+asyncpg://seedjournal:seedjournal@localhost:5432/seedjournal
-          APP_ENV: development
-          JWT_SECRET: ci-secret
-        run: pytest -q
+        run: pytest -v --tb=short
 
-  # Optional: use workflow "Deploy Staging (Fly)" after adding FLY_API_TOKEN secret
+  # Optional: Actions → "Deploy Staging (Fly)" after FLY_API_TOKEN is set

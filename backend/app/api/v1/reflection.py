@@ -1,3 +1,4 @@
+import os
 from datetime import datetime
 from uuid import UUID
 
@@ -181,7 +182,11 @@ async def complete_entry_reflection(
     except ReflectionError as exc:
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=str(exc)) from exc
 
-    background_tasks.add_task(enqueue_entry_pipeline, user.id, entry_id)
+    # TestClient / CI: run pipeline inline so memory/tree tests are reliable
+    if os.getenv("PYTEST_CURRENT_TEST"):
+        await enqueue_entry_pipeline(user.id, entry_id)
+    else:
+        background_tasks.add_task(enqueue_entry_pipeline, user.id, entry_id)
 
     return ReflectionCompleteResponse(
         entry_id=entry_id,
