@@ -1,0 +1,27 @@
+# Nightly / manual smoke against public staging URL (no secrets).
+name: Staging smoke
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 12 * * *"
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Health checks
+        run: |
+          set -e
+          BASE="https://seedjournal-api-staging.fly.dev"
+          for path in /health /v1/health; do
+            code=$(curl -sS -o /tmp/body -w "%{http_code}" --max-time 60 "$BASE$path" || echo "000")
+            if [ "$code" != "200" ]; then
+              echo "::warning::Staging $path returned $code (deploy Gate 2 in SHIP_CHECKLIST.md)"
+              exit 0
+            fi
+            grep -q '"status".*"ok"' /tmp/body || { echo "Unexpected body for $path"; cat /tmp/body; exit 1; }
+            echo "OK $path"
+          done
+          echo "Staging smoke passed."

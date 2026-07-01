@@ -39,7 +39,7 @@ cd backend
 fly auth login
 fly apps create seedjournal-api-staging
 fly secrets set DATABASE_URL="postgresql+asyncpg://..." JWT_SECRET="<openssl rand -hex 32>" APPLE_CLIENT_ID="com.seedjournal.app" APP_ENV="production" LLM_PROVIDER="openai" OPENAI_API_KEY="sk-..." CORS_ORIGINS="https://minaelzek.github.io"
-fly deploy
+fly deploy -c fly.staging.toml
 ```
 
 ### B3. Smoke test
@@ -52,7 +52,7 @@ bash scripts/smoke_staging.sh https://seedjournal-api-staging.fly.dev
 
 Edit `ios/Config/Staging.xcconfig` if your Fly app name differs.
 
-Step-by-step verify: [`STAGING_VERIFY.md`](STAGING_VERIFY.md) · reference: [`STAGING_DEPLOY.md`](STAGING_DEPLOY.md)
+**Master checklist:** [`SHIP_CHECKLIST.md`](SHIP_CHECKLIST.md) · verify: [`STAGING_VERIFY.md`](STAGING_VERIFY.md)
 
 ---
 

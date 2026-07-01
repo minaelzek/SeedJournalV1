@@ -41,6 +41,17 @@
 
 ---
 
+## Live probes (automated / manual)
+
+| URL | Expected |
+|-----|----------|
+| GitHub Pages privacy | ✅ loads (verify periodically) |
+| `seedjournal-api-staging.fly.dev/health` | ⏳ deploy **Gate 2** in [`SHIP_CHECKLIST.md`](SHIP_CHECKLIST.md) |
+
+Run locally: `powershell -File scripts/validate_ship_prereqs.ps1`
+
+---
+
 ## Single entry point after clone
 
 ```bash
@@ -52,5 +63,5 @@ infra/docker compose up -d
 cd backend && pip install -e ".[dev]" && alembic upgrade head && uvicorn app.main:app --reload
 
 # 3. Ship path
-docs/NEXT_STEPS_AFTER_CI.md
+docs/SHIP_CHECKLIST.md
 ```
