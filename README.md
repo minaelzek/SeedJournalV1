@@ -1,8 +1,49 @@
 # SeedJournal
 
+[![Backend CI](https://github.com/minaelzek/SeedJournalV1/actions/workflows/backend.yml/badge.svg)](https://github.com/minaelzek/SeedJournalV1/actions/workflows/backend.yml)
+[![iOS CI](https://github.com/minaelzek/SeedJournalV1/actions/workflows/ios.yml/badge.svg)](https://github.com/minaelzek/SeedJournalV1/actions/workflows/ios.yml)
+
 A premium AI-guided reflection journal for young adults. Thoughts become memories; memories become insights; growth is shown through a living sakura tree—not gamification.
 
-**Status:** Feature-complete MVP + ship prep (XcodeGen, Keychain, Sign in with Apple, OpenAI provider, Docker, privacy draft). GitHub: [`docs/GITHUB_SETUP.md`](docs/GITHUB_SETUP.md) · Pages: [`docs/ENABLE_GITHUB_PAGES.md`](docs/ENABLE_GITHUB_PAGES.md). See [`docs/SHIP_PREP.md`](docs/SHIP_PREP.md) · [`docs/STAGING_DEPLOY.md`](docs/STAGING_DEPLOY.md) · [`docs/TESTFLIGHT.md`](docs/TESTFLIGHT.md) · CI: backend + iOS workflows. See `docs/` and run backend per `backend/README.md`.
+**Public repo** — [`SECURITY.md`](SECURITY.md) · [Privacy policy (GitHub Pages)](https://minaelzek.github.io/SeedJournalV1/privacy/) *(enable Pages: [`docs/ENABLE_GITHUB_PAGES.md`](docs/ENABLE_GITHUB_PAGES.md))*
+
+## Quick start
+
+```bash
+# Database
+cd infra && docker compose up -d
+
+# API
+cd backend && cp .env.example .env
+pip install -e ".[dev]"
+alembic upgrade head
+uvicorn app.main:app --reload --port 8000
+
+# iOS (macOS)
+cd ios && xcodegen generate && open SeedJournal.xcodeproj
+```
+
+Simulator: DEBUG → `http://127.0.0.1:8000/v1` · Dev sign-in in DEBUG builds.
+
+## Ship path
+
+| Step | Doc |
+|------|-----|
+| GitHub / CI | [`docs/GITHUB_SETUP.md`](docs/GITHUB_SETUP.md) |
+| Privacy URL | [`docs/ENABLE_GITHUB_PAGES.md`](docs/ENABLE_GITHUB_PAGES.md) |
+| Local + Xcode | [`docs/SHIP_PREP.md`](docs/SHIP_PREP.md) |
+| Staging API | [`docs/STAGING_DEPLOY.md`](docs/STAGING_DEPLOY.md) |
+| TestFlight | [`docs/TESTFLIGHT.md`](docs/TESTFLIGHT.md) |
+| App Store | [`docs/APP_STORE_READINESS.md`](docs/APP_STORE_READINESS.md) · [`docs/APP_STORE_SCREENSHOTS.md`](docs/APP_STORE_SCREENSHOTS.md) |
+
+## Stack
+
+| Layer | Technology |
+|-------|------------|
+| iOS | Swift, SwiftUI, Sign in with Apple, Keychain |
+| API | Python, FastAPI, Alembic |
+| Data | PostgreSQL 16, pgvector |
+| AI | Pluggable LLM (stub dev / OpenAI prod) |
 
 ## Philosophy
 
@@ -11,24 +52,15 @@ A premium AI-guided reflection journal for young adults. Thoughts become memorie
 - **Memory system** = intelligence  
 - **Sakura tree** = emotional representation of growth  
 
-## Planned stack
-
-| Layer | Technology |
-|-------|------------|
-| iOS | Swift, SwiftUI |
-| API | Python, FastAPI |
-| Data | PostgreSQL, pgvector |
-
 ## Documentation
 
-- [Phase 1 — Repository analysis](docs/PHASE1_REPOSITORY_ANALYSIS.md)
-- [Execution plan](docs/EXECUTION_PLAN.md)
 - [Product spec](docs/PRODUCT_SPEC.md)
 - [Technical architecture](docs/TECHNICAL_ARCHITECTURE.md)
+- [Execution plan](docs/EXECUTION_PLAN.md)
 - [Database schema](docs/DATABASE_SCHEMA.md)
 - [AI pipeline](docs/AI_PIPELINE.md)
 - [Screen map](docs/SCREEN_MAP.md)
 
 ## License
 
-TBD
+[MIT](LICENSE)
