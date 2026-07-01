@@ -25,6 +25,8 @@ cd ios && xcodegen generate && open SeedJournal.xcodeproj
 
 Simulator: DEBUG → `http://127.0.0.1:8000/v1` · Dev sign-in in DEBUG builds.
 
+**CI green?** → [`docs/NEXT_STEPS_AFTER_CI.md`](docs/NEXT_STEPS_AFTER_CI.md) (Fly staging, Xcode, TestFlight)
+
 ## Ship path
 
 | Step | Doc |

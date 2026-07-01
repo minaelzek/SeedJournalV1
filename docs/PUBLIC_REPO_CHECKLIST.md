@@ -12,8 +12,8 @@ Repo: **https://github.com/minaelzek/SeedJournalV1** (public)
 
 ## You should verify
 
-- [ ] **GitHub Pages** enabled → https://minaelzek.github.io/SeedJournalV1/privacy/  
-- [ ] **Actions** green on `main`  
+- [x] **Actions** green on `main` (Backend + iOS + Pages)  
+- [ ] **GitHub Pages** live in browser → https://minaelzek.github.io/SeedJournalV1/privacy/  
 - [ ] **Branch protection** on `main` (optional: require CI)  
 - [ ] **Secrets** only in Actions / Fly — never in git history  
 - [ ] If repo was ever private with secrets committed: **rotate** `JWT_SECRET`, OpenAI keys  
