@@ -1,12 +1,13 @@
 from datetime import datetime
 from uuid import UUID
 
-from fastapi import APIRouter, Depends, HTTPException, Query, status
+from fastapi import APIRouter, Depends, Header, HTTPException, Query, status
 from pydantic import BaseModel, Field
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.auth_deps import get_current_user_id
 from app.core.deps import get_db
+from app.core.idempotency import get_cached_response, store_cached_response
 from app.journal.service import create_entry, get_entry_for_user, list_entries_for_user
 
 router = APIRouter()
@@ -56,7 +57,13 @@ async def create_journal_entry(
     payload: EntryCreate,
     user_id: UUID = Depends(get_current_user_id),
     session: AsyncSession = Depends(get_db),
+    idempotency_key: str | None = Header(default=None, alias="Idempotency-Key"),
 ) -> EntryResponse:
+    if idempotency_key:
+        cache_key = f"entry:{user_id}:{idempotency_key}"
+        cached = get_cached_response(cache_key)
+        if cached:
+            return EntryResponse.model_validate_json(cached)
     entry = await create_entry(
         session,
         user_id=user_id,
@@ -64,7 +71,10 @@ async def create_journal_entry(
         body=payload.body,
     )
     await session.commit()
-    return _to_response(entry)
+    response = _to_response(entry)
+    if idempotency_key:
+        store_cached_response(f"entry:{user_id}:{idempotency_key}", response.model_dump_json())
+    return response
 
 
 @router.get("", response_model=EntryListResponse)

@@ -48,6 +48,13 @@ rm -rf SeedJournalV1
 
 Only the **root** `.git` should track this project.
 
-## 6. Let the agent push next time
+## 6. Privacy policy (GitHub Pages)
+
+1. Repo **Settings → Pages → Build: GitHub Actions**
+2. Push changes under `docs/legal/` — workflow **GitHub Pages — Privacy** deploys
+3. URL: `https://minaelzek.github.io/SeedJournalV1/privacy/`
+4. Set `SEEDJOURNAL_PRIVACY_URL` in `ios/Config/Release.xcconfig` to that URL
+
+## 7. Let the agent push next time
 
 After `git remote add origin ...` succeeds once, you can ask: *“push to GitHub”* and the agent will run `git push`.

@@ -27,6 +27,10 @@ struct APIClient {
         try await request(path, method: "GET", bodyData: nil)
     }
 
+    func patch<T: Encodable, R: Decodable>(_ path: String, body: T) async throws -> R {
+        try await request(path, method: "PATCH", body: body)
+    }
+
     private func request<T: Encodable, R: Decodable>(
         _ path: String,
         method: String,

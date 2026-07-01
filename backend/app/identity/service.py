@@ -45,3 +45,21 @@ async def get_or_create_user_from_apple(
     session.add(tree)
     await session.flush()
     return user
+
+
+async def update_user_preferences(
+    session: AsyncSession,
+    user_id: UUID,
+    *,
+    timezone: str | None = None,
+    ai_depth_enabled: bool | None = None,
+) -> User | None:
+    user = await get_user_by_id(session, user_id)
+    if user is None:
+        return None
+    if timezone is not None:
+        user.timezone = timezone
+    if ai_depth_enabled is not None:
+        user.ai_depth_enabled = ai_depth_enabled
+    await session.flush()
+    return user

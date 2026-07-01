@@ -20,6 +20,16 @@ struct AppleAuthRequest: Codable {
     }
 }
 
+struct MePatchRequest: Codable {
+    let timezone: String?
+    let aiDepthEnabled: Bool?
+
+    enum CodingKeys: String, CodingKey {
+        case timezone
+        case aiDepthEnabled = "ai_depth_enabled"
+    }
+}
+
 struct MeResponse: Codable {
     let id: UUID
     let email: String?

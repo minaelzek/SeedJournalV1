@@ -23,9 +23,9 @@ Recommend **12+** or **17+** depending on unrestricted journal + AI content; no 
 
 ## Required before submission
 
-- [ ] Apple Sign in with Apple (replace dev auth)
-- [ ] Keychain for tokens
-- [ ] Hosted privacy policy URL
+- [x] Sign in with Apple + Keychain (code shipped; verify on device)
+- [ ] Hosted privacy policy URL (enable GitHub Pages: `.github/workflows/pages.yml` → `https://<user>.github.io/SeedJournalV1/privacy/`)
+- [ ] Screenshot set — see `docs/APP_STORE_SCREENSHOTS.md`
 - [ ] Production API + TLS
 - [ ] App icons, screenshots (tree home, journal, calm palette)
 - [ ] `ITSAppUsesNonExemptEncryption` if applicable
@@ -50,3 +50,5 @@ Recommend **12+** or **17+** depending on unrestricted journal + AI content; no 
 - Rate limits on `/auth` and AI message endpoints
 - `GET /v1/me/export`, `DELETE /v1/me`
 - Analysis retry (1x) in pipeline
+- HNSW index migration `002` for OpenAI vector search
+- `PATCH /v1/me` (AI depth), `Idempotency-Key` on `POST /v1/entries`

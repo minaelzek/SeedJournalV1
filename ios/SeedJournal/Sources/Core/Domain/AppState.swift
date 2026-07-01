@@ -77,6 +77,16 @@ final class AppState {
     }
     #endif
 
+    func updateAIDepth(_ enabled: Bool) async {
+        guard accessToken != nil else { return }
+        do {
+            let req = MePatchRequest(timezone: nil, aiDepthEnabled: enabled)
+            currentUser = try await client.patch("/me", body: req)
+        } catch {
+            sessionError = (error as? LocalizedError)?.errorDescription
+        }
+    }
+
     func signOut() {
         accessToken = nil
         currentUser = nil

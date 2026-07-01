@@ -153,10 +153,17 @@ struct SettingsView: View {
     @Bindable var appState: AppState
     @State private var showDeleteConfirm = false
     @State private var statusMessage: String?
+    @State private var aiDepth: Bool = true
 
     var body: some View {
         NavigationStack {
             List {
+                Section("Reflection") {
+                    Toggle("AI depth (gentle follow-up questions)", isOn: $aiDepth)
+                        .onChange(of: aiDepth) { _, newValue in
+                            Task { await appState.updateAIDepth(newValue) }
+                        }
+                }
                 Section("Account") {
                     if let email = appState.currentUser?.email { Text(email) }
                     else { Text("Signed in") }
@@ -183,6 +190,7 @@ struct SettingsView: View {
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) { Button("Done") { dismiss() } }
             }
+            .onAppear { aiDepth = appState.currentUser?.aiDepthEnabled ?? true }
             .confirmationDialog("Delete your account and all journal data?", isPresented: $showDeleteConfirm) {
                 Button("Delete everything", role: .destructive) {
                     Task { await deleteAccount() }
