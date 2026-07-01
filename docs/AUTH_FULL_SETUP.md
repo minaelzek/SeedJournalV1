@@ -71,6 +71,8 @@ Expected: health OK; bad Apple token → **401** (not 502).
 
 ---
 
+**Simulator?** See [`XCODE_SIMULATOR.md`](XCODE_SIMULATOR.md) (local API + Developer sign-in, or Staging + Apple ID in Simulator).
+
 ## Part D — iPhone (SeedJournal-Staging)
 
 On a **Mac**:
