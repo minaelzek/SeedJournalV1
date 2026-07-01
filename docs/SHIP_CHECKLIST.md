@@ -17,6 +17,8 @@ Print or keep open while deploying. **Repo is complete** — check boxes as *you
 
 ## Gate 1 — Database (Neon ~10 min)
 
+Guide: [`NEON_SETUP_BEGINNER.md`](NEON_SETUP_BEGINNER.md) — **skip** Neon’s “connect editor” prompt.
+
 - [ ] Postgres 16 project created
 - [ ] SQL run:
 

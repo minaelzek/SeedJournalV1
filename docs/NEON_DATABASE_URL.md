@@ -1,5 +1,7 @@
 # Neon → Fly `DATABASE_URL`
 
+**New to Neon?** Start with [`NEON_SETUP_BEGINNER.md`](NEON_SETUP_BEGINNER.md) (skip the “connect editor” step).
+
 ## 1. Neon console
 
 1. https://console.neon.tech → your project  
